@@ -1,5 +1,9 @@
 # DAEA-Lab-7
 
+## Integrantes
+- santiago salas
+- jesus flores
+  
 ## Activación
 
 **Abrir:** `Biblioteca.sln` (Visual Studio 2022) → **F5**.
