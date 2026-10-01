@@ -20,4 +20,4 @@ Carpeta `Base-de-Datos\`, ejecutar en este orden:
 | `1-Script-BibliotecaDB.sql` | `BibliotecaDB` (datos del enunciado) |
 | `2-Script-BibliotecaDB-DatosExtra.sql` | datos ficticios adicionales (opcional) |
 
-La cadena de conexión está en el `App.config` de `Biblioteca.WPF`.
+La cadena de conexión es `Biblioteca.WPF`.
