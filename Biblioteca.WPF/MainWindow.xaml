@@ -1,0 +1,44 @@
+<Window x:Class="Biblioteca.WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+        Title="Biblioteca" Width="1280" Height="800" MinWidth="1100" MinHeight="700"
+        WindowStartupLocation="CenterScreen"
+        Background="{StaticResource PaperBrush}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="240" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Column="0" Background="{StaticResource SideBrush}">
+            <DockPanel>
+                <StackPanel DockPanel.Dock="Top" Margin="24,30,24,26">
+                    <TextBlock Text="BIBLIOTECA" FontSize="11" FontWeight="SemiBold"
+                               Foreground="{StaticResource GoldBrush}" />
+                    <TextBlock Text="Préstamos y catálogo" FontFamily="Georgia" FontSize="22"
+                               Foreground="White" TextWrapping="Wrap" Margin="0,6,0,0" />
+                </StackPanel>
+
+                <TextBlock DockPanel.Dock="Bottom" Text="BibliotecaDB · LocalDB" FontSize="11"
+                           Margin="24,0,24,22" Foreground="#7F8C84" />
+
+                <ListBox x:Name="Menu" Background="Transparent" BorderThickness="0"
+                         SelectionChanged="Menu_SelectionChanged">
+                    <ListBoxItem Style="{StaticResource NavItem}" Tag="Libros" Content="Libros" />
+                    <ListBoxItem Style="{StaticResource NavItem}" Tag="Socios" Content="Socios" />
+                    <ListBoxItem Style="{StaticResource NavItem}" Tag="Prestamo" Content="Préstamo" />
+                    <ListBoxItem Style="{StaticResource NavItem}" Tag="Devolucion" Content="Devolución" />
+                    <ListBoxItem Style="{StaticResource NavItem}" Tag="Reporte" Content="Reporte" />
+                </ListBox>
+            </DockPanel>
+        </Border>
+
+        <Grid Grid.Column="1">
+            <Frame x:Name="Contenido" NavigationUIVisibility="Hidden" Background="Transparent" />
+            <ui:SnackbarPresenter x:Name="SnackbarPresenter" />
+        </Grid>
+
+        <ui:ContentDialogHost x:Name="RootDialogHost" Grid.ColumnSpan="2" />
+    </Grid>
+</Window>

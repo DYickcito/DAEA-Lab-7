@@ -1,0 +1,107 @@
+<Page x:Class="Biblioteca.WPF.Views.SociosPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      Title="Socios"
+      ScrollViewer.CanContentScroll="False">
+    <Grid Margin="40,32,40,32">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Margin="0,0,0,24">
+            <TextBlock Text="LECTORES" Style="{StaticResource Eyebrow}" />
+            <TextBlock Text="Socios" Style="{StaticResource PageTitle}" />
+            <TextBlock Text="Registre, busque y dé de baja socios. La búsqueda funciona por nombre o por DNI."
+                       Style="{StaticResource PageSubtitle}" />
+            <Border Style="{StaticResource Rule}" Margin="0,18,0,0" />
+        </StackPanel>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="24" />
+                <ColumnDefinition Width="340" />
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0" Style="{StaticResource Panel}" Padding="18">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0" Margin="0,0,0,12">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <ui:TextBox x:Name="txtBuscar" Grid.Column="0"
+                                    PlaceholderText="Buscar por nombre o DNI…"
+                                    ClearButtonEnabled="True" TextChanged="txtBuscar_TextChanged" />
+                        <ui:Button x:Name="btnActualizar" Grid.Column="1" Margin="8,0,0,0" Content="Actualizar"
+                                   Click="btnActualizar_Click" />
+                    </Grid>
+
+                    <DataGrid x:Name="dgSocios" Grid.Row="1" Style="{StaticResource ModernGrid}"
+                              SelectionChanged="dgSocios_SelectionChanged">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="DNI" Binding="{Binding DNI}" Width="110"
+                                                ElementStyle="{StaticResource TextCell}" />
+                            <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" Width="3*"
+                                                ElementStyle="{StaticResource TextCell}" />
+                            <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="3*"
+                                                ElementStyle="{StaticResource TextCell}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <StackPanel x:Name="estadoVacio" Grid.Row="1" Style="{StaticResource EmptyState}">
+                        <TextBlock x:Name="txtVacio" Text="No se encontraron socios." FontFamily="Georgia"
+                                   FontStyle="Italic" FontSize="16" HorizontalAlignment="Center"
+                                   Foreground="{StaticResource MutedBrush}" />
+                    </StackPanel>
+
+                    <ui:ProgressRing x:Name="anilloCarga" Grid.Row="1" IsIndeterminate="True"
+                                     Width="40" Height="40" Visibility="Collapsed" />
+                </Grid>
+            </Border>
+
+            <Border Grid.Column="2" Style="{StaticResource Panel}" VerticalAlignment="Stretch">
+                <StackPanel>
+                    <TextBlock x:Name="txtTituloForm" Text="Nuevo socio" Style="{StaticResource SectionTitle}" />
+                    <TextBlock x:Name="txtAyudaForm" Text="Complete los datos y presione Guardar."
+                               Style="{StaticResource HintText}" Margin="0,4,0,0" />
+                    <Border Style="{StaticResource Rule}" Margin="0,14,0,0" />
+
+                    <TextBlock Text="DNI" Style="{StaticResource FieldLabel}" />
+                    <ui:TextBox x:Name="txtDni" PlaceholderText="8 dígitos" MaxLength="8" />
+
+                    <TextBlock Text="NOMBRE COMPLETO" Style="{StaticResource FieldLabel}" />
+                    <ui:TextBox x:Name="txtNombre" PlaceholderText="p. ej. María Quispe Huamán" MaxLength="100" />
+
+                    <TextBlock Text="EMAIL (OPCIONAL)" Style="{StaticResource FieldLabel}" />
+                    <ui:TextBox x:Name="txtEmail" PlaceholderText="nombre@correo.com" MaxLength="100" />
+
+                    <Grid Margin="0,24,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="8" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <ui:Button x:Name="btnNuevo" Grid.Column="0" Content="Nuevo" HorizontalAlignment="Stretch"
+                                   ToolTip="Limpiar el formulario (Ctrl+N)" Click="btnNuevo_Click" />
+                        <ui:Button x:Name="btnGuardar" Grid.Column="2" Content="Guardar" HorizontalAlignment="Stretch"
+                                   Appearance="Primary" ToolTip="Guardar (Ctrl+S)" Click="btnGuardar_Click" />
+                    </Grid>
+
+                    <ui:Button x:Name="btnEliminar" Content="Dar de baja" Margin="0,8,0,0"
+                               HorizontalAlignment="Stretch" Appearance="Danger" Click="btnEliminar_Click" />
+
+                    <TextBlock Margin="0,20,0,0" Style="{StaticResource HintText}"
+                               Text="Atajos: Ctrl+N nuevo · Ctrl+S guardar · Esc cancelar edición" />
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Grid>
+</Page>
