@@ -1,8 +1,8 @@
 # DAEA-Lab-7
 
 ## Integrantes
-- santiago salas
-- jesus flores
+- Santiago Salas
+- Emanuel Flores
   
 ## Activación
 
